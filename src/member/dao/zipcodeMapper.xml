@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zipcodeSQL">
+	<select id="getZipcodeList" parameterType="String" resultType="zipcode">
+		select * from newzipcode where sido like '%'||#sido#||'%' and nvl(sigungu,0) like '%'||#sigungu#||'%' and roadname like '%'||#roadname#||'%'
+		<choose>
+			<when 
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+		
+	</select>
+</mapper>
+
+
+			while(rs.next()) {
+				ZipcodeDTO zipcodeDTO = new ZipcodeDTO();
+				zipcodeDTO.setZipcode(rs.getString("zipcode"));
+				zipcodeDTO.setSido(rs.getString("sido"));
+				zipcodeDTO.setSigungu(rs.getString("sigungu") == null ? "" : rs.getString("sigungu"));
+				zipcodeDTO.setYubmyundong(rs.getString("yubmyundong"));
+				
+//				if(rs.getString("ri")==null) {
+//					zipcodeDTO.setRi("");
+//				} else zipcodeDTO.setRi(rs.getString("ri"));
+				
+				zipcodeDTO.setRi(rs.getString("ri")==null ? "" : rs.getString("ri"));
+				
+				zipcodeDTO.setRoadname(rs.getString("roadname"));
+				
+				zipcodeDTO.setBuildingname(rs.getString("buildingname")==null ? "" : rs.getString("buildingname"));
